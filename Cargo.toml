@@ -5,8 +5,27 @@ edition = "2021"
 
 [dependencies]
 bytemuck = {version = "1.21.0",features = ["derive"]}
+cfg-if = "1.0.0"
+env_logger = "0.11.6"
+gloo = "0.11.0"
+log = "0.4.22"
 pollster = "0.4.0"
-rand = "0.8.5"
+rand = {version = "0.8.5",features = ["small_rng"]}
+wasm-bindgen = "0.2.99"
+wasm-bindgen-futures = "0.4.49"
+wasm-logger = "0.2.0"
+wasm-timer = "0.2.5"
+web-sys = "0.3.76"
+wee_alloc = "0.4.5"
 wgpu = "23.0.1"
 winit = "0.30.8"
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "wgpu-pentagram-rotate-refactoring"
+path = "src/lib.rs"
+
+[package.metadata.cargo-machete]
+ignored = ["prost"]
