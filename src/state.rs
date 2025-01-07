@@ -1,8 +1,12 @@
-use std::{sync::Arc, time::Instant};
-use gloo::render;
-use rand::distributions::uniform;
 use wgpu::util::DeviceExt;
-use winit::window::Window;
+use winit::{event::WindowEvent, window::Window};
+
+#[cfg(not(target_arch = "wasm32"))]
+use std::time::Instant;
+
+#[cfg(target_arch = "wasm32")]
+use web_time::Instant;
+
 
 pub struct WgpuState<'window> {
     pub instance: wgpu::Instance,
@@ -19,254 +23,26 @@ pub struct WgpuState<'window> {
     pub uniform_buffer: Option<wgpu::Buffer>,
     pub uniform_bind_group: Option<wgpu::BindGroup>,
     pub instance_buffer: Option<wgpu::Buffer>,
-    pub start_time: Option<std::time::Instant>
+    pub start_time: Option<Instant>,
+
+    pub window: &'window Window,
 }
 
-#[repr(C)]
-#[derive(Debug, Copy, Clone,bytemuck::Pod, bytemuck::Zeroable)]
-pub struct Vertex {
-    pub position: [f32; 2]
-}
 
-#[repr(C)]
-#[derive(Copy, Clone, bytemuck::Pod, bytemuck::Zeroable)]
-struct Instance {
-    position: [f32; 2],
-    scale: f32,
-    initial_rotation: f32,
-    speed: [f32; 2],
-    rotation_speed: f32,
-}
 
-#[repr(C)]
-#[derive(Copy, Clone, bytemuck::Pod, bytemuck::Zeroable)]
-struct Uniforms {
-    time: f32,
-}
+
 impl<'window> WgpuState<'window> {
-    const STAR_INSTANCE_COUNT: u32 = 500;
-    pub fn new_wasm(window: Arc<Window>) -> WgpuState<'window> {
+    pub const STAR_INSTANCE_COUNT: u32 = 500;
+    pub async fn new(window: &'window Window) -> WgpuState<'window> {
         let size = window.inner_size();
         let instance = wgpu::Instance::new(
             wgpu::InstanceDescriptor {
-                backends: wgpu::Backends::PRIMARY,
+                backends: wgpu::Backends::all(),
                 ..Default::default()
             }
         );
         let surface = instance.create_surface(window).unwrap();
 
-        Self {
-            instance,
-            surface,
-            device: None,
-            queue: None,
-            config: None,
-            size,
-            render_pipeline: None,
-            vertex_buffer: None,
-            num_vertices: None,
-            index_buffer: None,
-            num_indices: None,
-            uniform_buffer: None,
-            uniform_bind_group: None,
-            instance_buffer: None,
-            start_time: None
-        }
-    }
-
-    pub async fn wasm_runtime_setup(&mut self) {
-        let adapter = self.instance.request_adapter(
-            &wgpu::RequestAdapterOptions {
-                power_preference: wgpu::PowerPreference::default(),
-                compatible_surface: Some(&self.surface),
-                force_fallback_adapter: false
-            }
-        ).await.unwrap();
-        let (device,queue) = adapter.request_device(
-            &wgpu::DeviceDescriptor {
-                label: None,
-                ..Default::default()
-            },
-            None
-        ).await.unwrap();
-        device.on_uncaptured_error(Box::new(|error| {
-            panic!("Device error: {:?}", error);
-        }));
-
-        let surface_caps  = self.surface.get_capabilities(&adapter);
-        let config = wgpu::SurfaceConfiguration {
-            usage: wgpu::TextureUsages::RENDER_ATTACHMENT,
-            format: surface_caps.formats[0],
-            width: self.size.width.max(1),
-            height: self.size.height.max(1),
-            present_mode: surface_caps.present_modes[0],
-            alpha_mode: surface_caps.alpha_modes[0],
-            view_formats: vec![],
-            desired_maximum_frame_latency: 1,
-        };
-        self.surface.configure(&device,&config);
-
-        let shader = device.create_shader_module(
-            wgpu::ShaderModuleDescriptor {
-                label: None,
-                source: wgpu::ShaderSource::Wgsl(
-                    include_str!("./shader.wgsl").into()
-                )
-            }
-        );
-
-        let uniform_buffer = device.create_buffer(
-            &wgpu::BufferDescriptor {
-                label: None,
-                size: std::mem::size_of::<Uniforms>() as u64,
-                usage: wgpu::BufferUsages::UNIFORM | wgpu::BufferUsages::COPY_DST,
-                mapped_at_creation: false
-            }
-        );
-
-        let uniform_bind_group_layout = device.create_bind_group_layout(
-            &wgpu::BindGroupLayoutDescriptor {
-                label: Some("uniform_bind_group_layout"),
-                entries: &[wgpu::BindGroupLayoutEntry {
-                    binding: 0,
-                    visibility: wgpu::ShaderStages::VERTEX,
-                    ty: wgpu::BindingType::Buffer {
-                        ty: wgpu::BufferBindingType::Uniform,
-                        has_dynamic_offset: false,
-                        min_binding_size: None
-                    },
-                    count: None
-                }]
-            }
-        );
-
-        let uniform_bind_group = device.create_bind_group(
-            &wgpu::BindGroupDescriptor {
-                label: None,
-                layout: &uniform_bind_group_layout,
-                entries: &[wgpu::BindGroupEntry {
-                    binding: 0,
-                    resource: uniform_buffer.as_entire_binding()
-                }]
-            }
-        );
-
-        let render_pipeline_layout = device.create_pipeline_layout(
-            &wgpu::PipelineLayoutDescriptor {
-                label: None,
-                bind_group_layouts: &[&uniform_bind_group_layout],
-                push_constant_ranges: &[]
-            }
-        );
-
-        let render_pipeline = device.create_render_pipeline(
-            &wgpu::RenderPipelineDescriptor {
-                label: None,
-                layout: Some(&render_pipeline_layout),
-                vertex: wgpu::VertexState {
-                    module: &shader,
-                    entry_point: Some("vertexMain"),
-                    compilation_options: Default::default(),
-                    buffers: &[
-                        wgpu::VertexBufferLayout {
-                            array_stride: std::mem::size_of::<Vertex>() as wgpu::BufferAddress,
-                            step_mode: wgpu::VertexStepMode::Vertex,
-                            attributes: &wgpu::vertex_attr_array![0 => Float32x2]
-                        },
-                        wgpu::VertexBufferLayout {
-                            array_stride: std::mem::size_of::<Instance>() as wgpu::BufferAddress,
-                            step_mode: wgpu::VertexStepMode::Instance,
-                            attributes: &wgpu::vertex_attr_array![
-                                2 => Float32x2,
-                                3 => Float32,
-                                4 => Float32,
-                                5 => Float32x2,
-                                6 => Float32
-                            ],
-                        }
-                    ]
-                },
-                fragment: Some(wgpu::FragmentState {
-                    module: &shader,
-                    entry_point: Some("fragmentMain"),
-                    targets: &[Some(wgpu::ColorTargetState {
-                        format: config.format,
-                        blend: Some(wgpu::BlendState::REPLACE),
-                        write_mask: wgpu::ColorWrites::ALL
-                    })],
-                    compilation_options: Default::default()
-                }),
-                primitive: wgpu::PrimitiveState {
-                    topology: wgpu::PrimitiveTopology::TriangleList,
-                    strip_index_format: None,
-                    front_face: wgpu::FrontFace::Ccw,
-                    cull_mode: Some(wgpu::Face::Back),
-                    polygon_mode: wgpu::PolygonMode::Fill,
-                    unclipped_depth: false,
-                    conservative: false,
-                },
-                depth_stencil: None,
-                multisample: wgpu::MultisampleState::default(),
-                multiview: None,
-                cache: None
-            }
-        );
-
-        let (vertices,indices) = Self::create_star_vertices();
-        let vertex_buffer = device.create_buffer_init(
-            &wgpu::util::BufferInitDescriptor {
-                label: None,
-                contents: bytemuck::cast_slice(&vertices),
-                usage: wgpu::BufferUsages::VERTEX
-            }
-        );
-
-        let index_buffer = device.create_buffer_init(
-            &wgpu::util::BufferInitDescriptor {
-                label: None,
-                contents: bytemuck::cast_slice(&indices),
-                usage: wgpu::BufferUsages::INDEX
-            }
-        );
-
-        let instances = Self::create_star_instances();
-        let instance_buffer = device.create_buffer_init(
-            &wgpu::util::BufferInitDescriptor {
-                label: None,
-                contents: bytemuck::cast_slice(&instances),
-                usage: wgpu::BufferUsages::VERTEX
-            }
-        );
-
-        self.device = Some(device);
-        self.queue = Some(queue);
-        self.config = Some(config);
-        self.render_pipeline = Some(render_pipeline);
-        self.vertex_buffer = Some(vertex_buffer);
-        self.num_vertices = Some(vertices.len() as u32);
-        self.index_buffer = Some(index_buffer);
-        self.num_indices = Some(indices.len() as u32);
-        self.uniform_buffer = Some(uniform_buffer);
-        self.uniform_bind_group = Some(uniform_bind_group);
-        self.instance_buffer = Some(instance_buffer);
-        self.start_time = Some(Instant::now());
-    
-    }   
-
-    pub fn native_new(window: Arc<Window>) -> WgpuState<'window> {
-        pollster::block_on(WgpuState::new_async(window))
-    }
-    pub async fn new_async(window: Arc<Window>) -> Self {
-        let size = window
-            .inner_size();
-        let instance = wgpu::Instance::new(
-            wgpu::InstanceDescriptor {
-                backends: wgpu::Backends::PRIMARY,
-                ..Default::default()
-            }
-        );
-
-        let surface = instance.create_surface(window).unwrap();
         let adapter = instance.request_adapter(
             &wgpu::RequestAdapterOptions {
                 power_preference: wgpu::PowerPreference::default(),
@@ -307,111 +83,14 @@ impl<'window> WgpuState<'window> {
             }
         );
 
-        let uniform_buffer = device.create_buffer(
-            &wgpu::BufferDescriptor {
-                label: None,
-                size: std::mem::size_of::<Uniforms>() as u64,
-                usage: wgpu::BufferUsages::UNIFORM | wgpu::BufferUsages::COPY_DST,
-                mapped_at_creation: false
-            }
-        );
+        let uniform_buffer = crate::uniform::Uniforms::get_uniform_buffer(&device);
 
-        let uniform_bind_group_layout = device.create_bind_group_layout(
-            &wgpu::BindGroupLayoutDescriptor {
-                label: Some("uniform_bind_group_layout"),
-                entries: &[wgpu::BindGroupLayoutEntry {
-                    binding: 0,
-                    visibility: wgpu::ShaderStages::VERTEX,
-                    ty: wgpu::BindingType::Buffer {
-                        ty: wgpu::BufferBindingType::Uniform,
-                        has_dynamic_offset: false,
-                        min_binding_size: None
-                    },
-                    count: None
-                }]
-            }
-        );
+        let (uniform_bind_group_layout,uniform_bind_group) = crate::uniform::Uniforms::get_uniform_bind_groups(&device,&uniform_buffer);
 
-        let uniform_bind_group = device.create_bind_group(
-            &wgpu::BindGroupDescriptor {
-                label: None,
-                layout: &uniform_bind_group_layout,
-                entries: &[wgpu::BindGroupEntry {
-                    binding: 0,
-                    resource: uniform_buffer.as_entire_binding()
-                }]
-            }
-        );
-
-        let render_pipeline_layout = device.create_pipeline_layout(
-            &wgpu::PipelineLayoutDescriptor {
-                label: None,
-                bind_group_layouts: &[&uniform_bind_group_layout],
-                push_constant_ranges: &[]
-            }
-        );
-
-        let render_pipeline = device.create_render_pipeline(
-            &wgpu::RenderPipelineDescriptor {
-                label: None,
-                layout: Some(&render_pipeline_layout),
-                vertex: wgpu::VertexState {
-                    module: &shader,
-                    entry_point: Some("vertexMain"),
-                    compilation_options: Default::default(),
-                    buffers: &[
-                        wgpu::VertexBufferLayout {
-                            array_stride: std::mem::size_of::<Vertex>() as wgpu::BufferAddress,
-                            step_mode: wgpu::VertexStepMode::Vertex,
-                            attributes: &wgpu::vertex_attr_array![0 => Float32x2]
-                        },
-                        wgpu::VertexBufferLayout {
-                            array_stride: std::mem::size_of::<Instance>() as wgpu::BufferAddress,
-                            step_mode: wgpu::VertexStepMode::Instance,
-                            attributes: &wgpu::vertex_attr_array![
-                                2 => Float32x2,
-                                3 => Float32,
-                                4 => Float32,
-                                5 => Float32x2,
-                                6 => Float32
-                            ],
-                        }
-                    ]
-                },
-                fragment: Some(wgpu::FragmentState {
-                    module: &shader,
-                    entry_point: Some("fragmentMain"),
-                    targets: &[Some(wgpu::ColorTargetState {
-                        format: config.format,
-                        blend: Some(wgpu::BlendState::REPLACE),
-                        write_mask: wgpu::ColorWrites::ALL
-                    })],
-                    compilation_options: Default::default()
-                }),
-                primitive: wgpu::PrimitiveState {
-                    topology: wgpu::PrimitiveTopology::TriangleList,
-                    strip_index_format: None,
-                    front_face: wgpu::FrontFace::Ccw,
-                    cull_mode: Some(wgpu::Face::Back),
-                    polygon_mode: wgpu::PolygonMode::Fill,
-                    unclipped_depth: false,
-                    conservative: false,
-                },
-                depth_stencil: None,
-                multisample: wgpu::MultisampleState::default(),
-                multiview: None,
-                cache: None
-            }
-        );
+        let render_pipeline= crate::uniform::Uniforms::get_render_setting(&device,&uniform_bind_group_layout,&shader,&config);  
 
         let (vertices,indices) = Self::create_star_vertices();
-        let vertex_buffer = device.create_buffer_init(
-            &wgpu::util::BufferInitDescriptor {
-                label: None,
-                contents: bytemuck::cast_slice(&vertices),
-                usage: wgpu::BufferUsages::VERTEX
-            }
-        );
+        let vertex_buffer = crate::vertex::Vertex::get_vertex_buffer(&device,&vertices);
 
         let index_buffer = device.create_buffer_init(
             &wgpu::util::BufferInitDescriptor {
@@ -421,14 +100,8 @@ impl<'window> WgpuState<'window> {
             }
         );
 
-        let instances = Self::create_star_instances();
-        let instance_buffer = device.create_buffer_init(
-            &wgpu::util::BufferInitDescriptor {
-                label: None,
-                contents: bytemuck::cast_slice(&instances),
-                usage: wgpu::BufferUsages::VERTEX
-            }
-        );
+        let instances = crate::instance::create_star_instances();
+        let instance_buffer = crate::instance::get_instance_buffer(&device, &instances);
 
         Self {
             instance,
@@ -445,8 +118,14 @@ impl<'window> WgpuState<'window> {
             uniform_buffer: Some(uniform_buffer),
             uniform_bind_group: Some(uniform_bind_group),
             instance_buffer: Some(instance_buffer),
-            start_time: Some(Instant::now())
+            start_time: Some(Instant::now()),
+            window: window
         }
+    }
+
+
+    pub fn native_new(window: &'window Window) -> WgpuState<'window> {
+        pollster::block_on(Self::new(window))
     }
 
     pub fn resize(&mut self, new_size: winit::dpi::PhysicalSize<u32>) {
@@ -460,25 +139,16 @@ impl<'window> WgpuState<'window> {
         }
     }
 
-    fn create_star_vertices() -> (Vec<Vertex>, Vec<u16>) {
-        let mut vertices = Vec::new();
+    #[allow(unused_variables)]
+    pub fn input(&mut self, event: &WindowEvent) -> bool {
+        false
+    }
+
+    pub fn update(&mut self) {}
+
+    fn create_star_vertices() -> (Vec<crate::vertex::Vertex>, Vec<u16>) {
         let num_points = 5;
-        let radius = 1.0;
-        
-        // 中心点を最初に追加
-        vertices.push(Vertex { position: [0.0, 0.0] });
-        
-        // 外側の頂点を計算
-        for i in 0..num_points {
-            let angle = (i as f32 * 2.0 * std::f32::consts::PI / num_points as f32) 
-                - std::f32::consts::FRAC_PI_2;
-            vertices.push(Vertex {
-                position: [
-                    radius * angle.cos(),
-                    radius * angle.sin(),
-                ]
-            });
-        }
+        let vertices = crate::vertex::Vertex::get_vertices();
     
         // 五芒星を形成するインデックス
         // 頂点0は中心点、頂点1-5は外周の点
@@ -501,6 +171,7 @@ impl<'window> WgpuState<'window> {
     }
 
     pub fn render(&mut self) -> Result<(),wgpu::SurfaceError> {
+        let render_before_time = Instant::now();
         let output = self.surface.get_current_texture().unwrap();
         let view = output.texture.create_view(&wgpu::TextureViewDescriptor::default());
         
@@ -530,7 +201,7 @@ impl<'window> WgpuState<'window> {
             queue.write_buffer(
                 uniform_buffer,
                 0,
-                bytemuck::cast_slice(&[Uniforms { time }])
+                bytemuck::cast_slice(&[crate::uniform::Uniforms { time }])
             );
             let mut encoder = device.create_command_encoder(
                 &wgpu::CommandEncoderDescriptor {
@@ -569,38 +240,18 @@ impl<'window> WgpuState<'window> {
         }
 
         output.present();
-
-        Ok(())
-    }
-
-    fn create_star_instances() -> Vec<Instance> {
-        use rand::Rng;
-
-        let mut rng: Box<dyn rand::RngCore> = if cfg!(target_arch = "wasm32") {
-            // wasm32の場合はrandが使えないので、乱数を固定値にする
-            use rand::SeedableRng;
-            Box::new(rand::rngs::SmallRng::seed_from_u64(0))
+        let render_after_time = Instant::now();
+        if cfg!(not(target_arch = "wasm32")) {
+            // レンダリングにかかった時間を出力
+            let render_time = render_after_time.duration_since(render_before_time).as_micros();
+            println!("Render time: {}μs", render_time);
         } else {
-            // デスクトップの場合は乱数を初期化
-            Box::new(rand::thread_rng())
-        };
-        let mut instances = Vec::new();
-        
-        for _ in 0..Self::STAR_INSTANCE_COUNT {
-            instances.push(Instance {
-                position: [
-                    rng.gen_range(-0.9..0.9),
-                    rng.gen_range(-0.9..0.9),
-                ],
-                scale: rng.gen_range(0.02..0.05),  // スケールを少し大きく
-                initial_rotation: rng.gen_range(0.0..std::f32::consts::PI * 2.0),
-                speed: [
-                    rng.gen_range(-0.3..0.3),      // 移動速度を調整
-                    rng.gen_range(-0.3..0.3),
-                ],
-                rotation_speed: rng.gen_range(0.5..2.0),  // 回転速度を調整
-            });
+            // かなり細かい精度で出力する
+            use wasm_bindgen::JsValue;
+
+            let render_time = render_after_time.duration_since(render_before_time).as_micros();
+            web_sys::console::log_1(&JsValue::from_str(format!("Render time: {}μs", render_time).as_str()))
         }
-        instances
+        Ok(())
     }
 }
