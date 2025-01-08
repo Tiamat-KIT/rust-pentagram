@@ -20,7 +20,6 @@ use wasm_bindgen::prelude::wasm_bindgen;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 
-
 fn main() {
     pollster::block_on(run());
 }

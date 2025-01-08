@@ -244,13 +244,13 @@ impl<'window> WgpuState<'window> {
         if cfg!(not(target_arch = "wasm32")) {
             // レンダリングにかかった時間を出力
             let render_time = render_after_time.duration_since(render_before_time).as_micros();
-            println!("Render time: {}μs", render_time);
+            println!("Render time: {} micro-sec", render_time);
         } else {
             // かなり細かい精度で出力する
             use wasm_bindgen::JsValue;
-
             let render_time = render_after_time.duration_since(render_before_time).as_micros();
-            web_sys::console::log_1(&JsValue::from_str(format!("Render time: {}μs", render_time).as_str()))
+            web_sys::console::log_1(&JsValue::from_str(format!("Render time: {} micro-sec", render_time).as_str()))
+            
         }
         Ok(())
     }
