@@ -1,0 +1,23 @@
+{
+    "name": "Rust DevContainer with Wasmtime",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "workspaceFolder": "/workspace",
+    "workspaceMount": "source=${localWorkspaceFolder}/workspace,target=/workspace,type=bind",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "editor.formatOnSave": true,
+                "rust-analyzer.cargo.target": "wasm32-unknown-unknown"
+            },
+            "extensions": [
+                "zerotaskx.rust-extension-pack",
+                "jinxdash.prettier-rust"
+            ]
+        }
+    },
+    "postCreateCommand": "rustup default stable && cargo install wasmtime-cli",
+    "remoteUser": "vscode"
+}
