@@ -37,7 +37,11 @@ impl<'window> WgpuState<'window> {
         let size = window.inner_size();
         let instance = wgpu::Instance::new(
             wgpu::InstanceDescriptor {
-                backends: wgpu::Backends::all(),
+                // WebAssemblyのときはWebGL、そうでないならWebGPU
+                #[cfg(target_arch = "wasm32")]
+                backends: wgpu::Backends::GL,
+                #[cfg(not(target_arch = "wasm32"))]
+                backends: wgpu::Backends::PRIMARY,
                 ..Default::default()
             }
         );
