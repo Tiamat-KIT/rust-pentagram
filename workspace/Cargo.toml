@@ -9,26 +9,31 @@ cfg-if = "1.0.0"
 chrono = "0.4.39"
 console_log = "1.0.0"
 env_logger = "0.11.6"
-fern = "0.7.1"
 log = "0.4.22"
 pollster = "0.4.0"
-quanta = "0.12.5"
 rand = { version = "0.8.5", features = ["small_rng"] }
-wasm-bindgen = "0.2.99"
-web-sys = "0.3.76"
 wgpu = { version = "23.0.1", features = ["wgsl", "webgl"] }
 winit = { version = "0.29.15", features = ["rwh_05"] }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
+wgpu = { version = "23.0.1", default-features = false, features = ["webgl"] }
 gloo = "0.11.0"
 console_error_panic_hook = "0.1.7"
 wasm-bindgen = "0.2.99"
 wasm-bindgen-futures = "0.4.49"
 wasm-logger = "0.2.0"
 wasm-timer = "0.2.5"
-web-sys = "0.3.76"
+web-sys = { version = "0.3.76", features = [
+    'Document',
+    'Element',
+    'HtmlCanvasElement',
+    'Window',
+] }
 web-time = "1.1.0"
 wee_alloc = "0.4.5"
+
+[target.'cfg(target_arch = "wasm32")'.features]
+default = ["wee_alloc"]
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -39,3 +44,13 @@ path = "src/lib.rs"
 
 [package.metadata.cargo-machete]
 ignored = ["prost"]
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ['-Oz', '--enable-mutable-globals', '--strip-producers', '--strip-debug']

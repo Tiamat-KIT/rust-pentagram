@@ -1,0 +1,756 @@
+Adapter: AdapterInfo { name: "AMD Radeon(TM) Graphics", vendor: 4098, device: 5708, device_type: IntegratedGpu, driver: "AMD proprietary driver", driver_info: "23.19.12.03 (AMD proprietary shader compiler)", backend: Vulkan }
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002834473333333333 sec
+Total Frames: 60
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0028022974999999998 sec
+Total Frames: 120
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0027717211111111116 sec
+Total Frames: 180
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0026916962500000002 sec
+Total Frames: 240
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002594672333333333 sec
+Total Frames: 300
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002533247222222222 sec
+Total Frames: 360
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002517348333333332 sec
+Total Frames: 420
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0024921806249999993 sec
+Total Frames: 480
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002482469074074072 sec
+Total Frames: 540
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0024811244999999984 sec
+Total Frames: 600
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002476512575757573 sec
+Total Frames: 660
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0025089274999999978 sec
+Total Frames: 720
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0025092651282051267 sec
+Total Frames: 780
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0025178220238095215 sec
+Total Frames: 840
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0025014975555555526 sec
+Total Frames: 900
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0024861764583333297 sec
+Total Frames: 960
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002480205490196077 sec
+Total Frames: 1020
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0025423591666666663 sec
+Total Frames: 1080
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0026046209649122805 sec
+Total Frames: 1140
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0026351394166666655 sec
+Total Frames: 1200
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0026498028571428564 sec
+Total Frames: 1260
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002668142424242422 sec
+Total Frames: 1320
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0026920423913043452 sec
+Total Frames: 1380
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0027056371527777756 sec
+Total Frames: 1440
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002744113666666666 sec
+Total Frames: 1500
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0027702762820512833 sec
+Total Frames: 1560
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0028114726543209873 sec
+Total Frames: 1620
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0028455564285714283 sec
+Total Frames: 1680
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0028712073563218372 sec
+Total Frames: 1740
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0028888066666666636 sec
+Total Frames: 1800
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0029123196774193533 sec
+Total Frames: 1860
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0029318468229166668 sec
+Total Frames: 1920
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0029313114141414137 sec
+Total Frames: 1980
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0029331065686274502 sec
+Total Frames: 2040
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002930539999999998 sec
+Total Frames: 2100
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0029351754166666664 sec
+Total Frames: 2160
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0029389833783783777 sec
+Total Frames: 2220
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002955506578947367 sec
+Total Frames: 2280
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0029593127350427337 sec
+Total Frames: 2340
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002963570041666666 sec
+Total Frames: 2400
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0029559182926829266 sec
+Total Frames: 2460
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0029623444841269833 sec
+Total Frames: 2520
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002987351627906977 sec
+Total Frames: 2580
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.00300254856060606 sec
+Total Frames: 2640
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.002999341185185183 sec
+Total Frames: 2700
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0030028070289855055 sec
+Total Frames: 2760
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0030166104964539004 sec
+Total Frames: 2820
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.003062259965277778 sec
+Total Frames: 2880
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0031109029591836744 sec
+Total Frames: 2940
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.003160875333333331 sec
+Total Frames: 3000
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.003200858464052285 sec
+Total Frames: 3060
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.003209686089743587 sec
+Total Frames: 3120
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0032173279245282993 sec
+Total Frames: 3180
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.00322116820987654 sec
+Total Frames: 3240
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.003226475909090906 sec
+Total Frames: 3300
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.003219123392857139 sec
+Total Frames: 3360
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0032260117543859604 sec
+Total Frames: 3420
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.003255219281609192 sec
+Total Frames: 3480
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.003284390112994347 sec
+Total Frames: 3540
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0033046320277777745 sec
+Total Frames: 3600
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.00331699989071038 sec
+Total Frames: 3660
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.0033406404838709643 sec
+Total Frames: 3720
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.00337332087301587 sec
+Total Frames: 3780
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0109887 sec
+Average Time: 0.003418363932291663 sec
+Total Frames: 3840
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0114073 sec
+Average Time: 0.003475180076923073 sec
+Total Frames: 3900
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0141282 sec
+Average Time: 0.0035285710353535316 sec
+Total Frames: 3960
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0141282 sec
+Average Time: 0.003551436517412931 sec
+Total Frames: 4020
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0141282 sec
+Average Time: 0.0035720192892156823 sec
+Total Frames: 4080
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0141282 sec
+Average Time: 0.003601445676328499 sec
+Total Frames: 4140
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003649443928571425 sec
+Total Frames: 4200
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003671229671361498 sec
+Total Frames: 4260
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0036984695601851806 sec
+Total Frames: 4320
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037098899543378926 sec
+Total Frames: 4380
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037159761936936845 sec
+Total Frames: 4440
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037323857111110988 sec
+Total Frames: 4500
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037443690131578836 sec
+Total Frames: 4560
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037475430735930647 sec
+Total Frames: 4620
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037638173717948623 sec
+Total Frames: 4680
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003780996561181428 sec
+Total Frames: 4740
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037909091666666604 sec
+Total Frames: 4800
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003816053847736617 sec
+Total Frames: 4860
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003826549654471536 sec
+Total Frames: 4920
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0038422451204819185 sec
+Total Frames: 4980
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0038614263293650724 sec
+Total Frames: 5040
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0038604251960784246 sec
+Total Frames: 5100
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0038623941666666613 sec
+Total Frames: 5160
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0038587089655172328 sec
+Total Frames: 5220
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0038427096022727214 sec
+Total Frames: 5280
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0038207849063670355 sec
+Total Frames: 5340
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003802890870370367 sec
+Total Frames: 5400
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037872758241758236 sec
+Total Frames: 5460
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037749765036231876 sec
+Total Frames: 5520
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037571307706093173 sec
+Total Frames: 5580
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003740822039007091 sec
+Total Frames: 5640
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037273665964912247 sec
+Total Frames: 5700
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0037135778819444415 sec
+Total Frames: 5760
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0036966185051546365 sec
+Total Frames: 5820
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0036812602891156425 sec
+Total Frames: 5880
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003671998164983161 sec
+Total Frames: 5940
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003663055633333329 sec
+Total Frames: 6000
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003656192326732669 sec
+Total Frames: 6060
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003642538300653592 sec
+Total Frames: 6120
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0036275575889967615 sec
+Total Frames: 6180
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003613516826923073 sec
+Total Frames: 6240
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003603168904761903 sec
+Total Frames: 6300
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0035910775786163495 sec
+Total Frames: 6360
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0035792412772585633 sec
+Total Frames: 6420
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0035701037499999994 sec
+Total Frames: 6480
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003557303776758408 sec
+Total Frames: 6540
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0035464576212121206 sec
+Total Frames: 6600
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0035389500450450453 sec
+Total Frames: 6660
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003526204761904761 sec
+Total Frames: 6720
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0035128840412979347 sec
+Total Frames: 6780
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.00350137678362573 sec
+Total Frames: 6840
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0034937865652173916 sec
+Total Frames: 6900
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0034853099999999997 sec
+Total Frames: 6960
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0034765700569800557 sec
+Total Frames: 7020
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.00346980384180791 sec
+Total Frames: 7080
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003462865504201682 sec
+Total Frames: 7140
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003457409722222224 sec
+Total Frames: 7200
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003446626528925623 sec
+Total Frames: 7260
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0034368268442622994 sec
+Total Frames: 7320
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0034257355691056945 sec
+Total Frames: 7380
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003419102567204305 sec
+Total Frames: 7440
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0034216892266666706 sec
+Total Frames: 7500
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003421211441798947 sec
+Total Frames: 7560
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0034187946981627335 sec
+Total Frames: 7620
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.00340991658854167 sec
+Total Frames: 7680
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0034048597416020698 sec
+Total Frames: 7740
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0034016029358974378 sec
+Total Frames: 7800
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003393189821882953 sec
+Total Frames: 7860
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033850413510101017 sec
+Total Frames: 7920
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003377921265664161 sec
+Total Frames: 7980
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033682881840796045 sec
+Total Frames: 8040
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003366115790123459 sec
+Total Frames: 8100
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003361842034313729 sec
+Total Frames: 8160
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003352721909975671 sec
+Total Frames: 8220
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033466710990338188 sec
+Total Frames: 8280
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033393089568345352 sec
+Total Frames: 8340
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033323064523809558 sec
+Total Frames: 8400
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033259971158392477 sec
+Total Frames: 8460
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033179697769953097 sec
+Total Frames: 8520
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033104382867132904 sec
+Total Frames: 8580
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033049393865740772 sec
+Total Frames: 8640
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0032997252183908066 sec
+Total Frames: 8700
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033065081735159825 sec
+Total Frames: 8760
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033150473922902517 sec
+Total Frames: 8820
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033168562950450474 sec
+Total Frames: 8880
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.0033122701006711433 sec
+Total Frames: 8940
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003310660444444447 sec
+Total Frames: 9000
+----------------------------------
+Min Time: 0.0015225 sec
+Max Time: 0.0175232 sec
+Average Time: 0.003309129249448127 sec
+Total Frames: 9060
+----------------------------------

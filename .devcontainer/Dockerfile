@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
     pkg-config \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
+RUN rustup target add wasm32-unknown-unknown
+
 # Wasmtime CLI をインストール
-RUN cargo install wasmtime-cli
+RUN curl https://wasmtime.dev/install.sh -sSf | bash
 WORKDIR /workspace
